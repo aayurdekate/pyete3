@@ -1,0 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.DataFrame({'Product_Category': ['electronics', 'clothes', 'utensils', 'electronics', 'clothes'],
+                   'Revenue': [100, 150, 200, 120, 180],
+                   'Units_Sold': [10, 15, 20, 12, 18]})
+print(data.head())
+
+
+
+
+category_revenue = data.groupby('Product_Category')['Revenue'].sum()
+plt.figure(figsize=(5, 3))
+category_revenue.plot(kind='bar', color='black')
+plt.title('Total Revenue by Product Category')
+plt.xlabel('Product Category')
+plt.ylabel('Total Revenue')
+plt.show()
+
+
+category_units_sold = data.groupby('Product_Category')['Units_Sold'].sum()
+plt.figure(figsize=(3, 3))
+plt.pie(category_units_sold, labels=category_units_sold.index, autopct='%1.1f%%')
+plt.title('Total Units Sold in a Category', fontsize=8)
+plt.show()
